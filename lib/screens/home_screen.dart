@@ -4,9 +4,9 @@ import 'package:preferences_app/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
 
+  // Define the routeNames statics
   static const String routerName = 'Home';
 
-   
   const HomeScreen({Key? key}) : super(key: key);
   
   @override

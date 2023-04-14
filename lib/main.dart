@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       initialRoute: HomeScreen.routerName,
       routes: {
+        // (_)    BuildContext, but since we don't need it here --> It's indicated as _
         HomeScreen.routerName    : ( _ ) => const HomeScreen(),
         SettingsScreen.routerName: ( _ ) => const SettingsScreen(),
       },
