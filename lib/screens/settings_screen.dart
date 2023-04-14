@@ -6,6 +6,7 @@ import 'package:preferences_app/widgets/widgets.dart';
 
 class SettingsScreen extends StatefulWidget {
 
+  // Define the routeNames statics
   static const String routerName = 'Settings';
    
   const SettingsScreen({Key? key}) : super(key: key);
