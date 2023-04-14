@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:preferences_app/screens/screens.dart';
 
+// SideMenu to navigate to different screens
 class SideMenu extends StatelessWidget {
   const SideMenu({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      // Allows scrolling
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -17,6 +19,13 @@ class SideMenu extends StatelessWidget {
             leading: const Icon( Icons.pages_outlined ),
             title: const Text('Home'),
             onTap: () {
+              // Ways to navigate
+              // 1. pop + pushNamed
+              Navigator.pop(context);   // Required to close the drawer
+              Navigator.pushNamed(context, HomeScreen.routerName );
+
+              // 2. pushReplacementNamed
+              // Overwrite the route directly
               Navigator.pushReplacementNamed(context, HomeScreen.routerName );
             },
           ),
@@ -45,6 +54,7 @@ class SideMenu extends StatelessWidget {
   }
 }
 
+// Extract as a specific Widget
 class _DrawerHeader extends StatelessWidget {
   const _DrawerHeader({
     Key? key,
