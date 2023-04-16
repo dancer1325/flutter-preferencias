@@ -15,8 +15,12 @@ void main() async {
     await Preferences.init();
 
     runApp(
-        MultiProvider(
+        MultiProvider(      // Required in case you need several providers, which are state managers
+          // Providers available in the Context --> to use in any Widget
+          // Placing providers here --> they will be accessible globally
           providers: [
+            //Preferences.isDarkmode             Required to pass the current isDarkMode value, not a default dummy one
+            // ChangeNotifierProvider(create: (_) => ThemeProvider(isDarkmode: Preferences.isDarkmode ))    Unnecessary new
             ChangeNotifierProvider(create: ( _ ) => ThemeProvider(isDarkmode: Preferences.isDarkmode )  )
           ],
           child: const MyApp(),
@@ -45,6 +49,8 @@ class MyApp extends StatelessWidget {
         SettingsScreen.routerName: ( _ ) => const SettingsScreen(),
       },
       //theme: Preferences.isDarkmode ? ThemeData.dark() : ThemeData.light(),     // SharedPreferences aren't a state manager
+      // Get access to the ThemeProvider via context, casting to ThemeProvider
+      // listen   By default, it's true.  Required for listening changes
       theme: Provider.of<ThemeProvider>(context).currentTheme,
     );
   }

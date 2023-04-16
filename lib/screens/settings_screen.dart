@@ -45,6 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 title: const Text('Darkmode'),
                 onChanged: ( value ) {
                   Preferences.isDarkmode = value;
+                  // Normally it the provider is into a event listener  --> you will not be interested in listening === listen:false
                   final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
 
                   value 
