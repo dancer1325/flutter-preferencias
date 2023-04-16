@@ -5,20 +5,24 @@ import 'package:preferences_app/screens/screens.dart';
 import 'package:preferences_app/share_preferences/preferences.dart';
 import 'package:provider/provider.dart';
 
+// void main() {
+// main() can be asynchronous !!!!
 void main() async {
 
-  WidgetsFlutterBinding.ensureInitialized();
+  // Required to make work the initialization of the preferences
+    WidgetsFlutterBinding.ensureInitialized();
 
-  await Preferences.init();
+    await Preferences.init();
 
-  runApp( 
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: ( _ ) => ThemeProvider(isDarkmode: Preferences.isDarkmode )  )
-      ],
-      child: const MyApp(),
-    )
-  );
+    runApp(
+        MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: ( _ ) => ThemeProvider(isDarkmode: Preferences.isDarkmode )  )
+          ],
+          child: const MyApp(),
+        )
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -27,6 +31,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // Impossible to initialize here Preferences, since build() is synchronous
+    //await Preferences.init();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -37,6 +44,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.routerName    : ( _ ) => const HomeScreen(),
         SettingsScreen.routerName: ( _ ) => const SettingsScreen(),
       },
+      //theme: Preferences.isDarkmode ? ThemeData.dark() : ThemeData.light(),     // SharedPreferences aren't a state manager
       theme: Provider.of<ThemeProvider>(context).currentTheme,
     );
   }

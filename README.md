@@ -63,3 +63,5 @@ samples, guidance on mobile development, and a full API reference.
     * [Android Studio] https://www.woolha.com/tutorials/using-flutter-widget-inspector-in-android-studio
 * '.yaml' files
     * Take care with the whitespaces
+* `??`
+  * [Dart null aware operators](// https://www.geeksforgeeks.org/dart-null-aware-operators/)

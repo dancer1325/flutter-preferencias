@@ -2,17 +2,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Preferences {
 
+  // static     We want to have a singleton for this class
+  // late       It's initialized asynchronously in shared_preferences library
   static late SharedPreferences _prefs;
 
   static String _name = '';
   static bool _isDarkmode = false;
   static int _gender = 1;
 
+  // Constructor can't return a Future, since it's synchronous
+  // Method which returns asynchronously the instance
   static Future init() async {
     _prefs = await SharedPreferences.getInstance();
   }
 
+  // Getter & Setters to expose it
+  // Read preferences, based on key
+  // Write preferences, passing key and value
   static String get name {
+    // https://www.geeksforgeeks.org/dart-null-aware-operators/
     return _prefs.getString('name') ?? _name;
   }
 
@@ -38,7 +46,5 @@ class Preferences {
     _gender = value;
     _prefs.setInt('gender', value );
   }
-
-
 }
 

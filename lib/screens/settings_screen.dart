@@ -32,12 +32,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
+          // allows scrolling, if it's too long
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text('Ajustes', style: TextStyle( fontSize: 45, fontWeight: FontWeight.w300 )),
               const Divider(),
 
+              // List of tiles with a toggle / switch
               SwitchListTile.adaptive(
                 value: Preferences.isDarkmode, 
                 title: const Text('Darkmode'),
@@ -56,7 +58,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
               RadioListTile<int>(
                 value: 1, 
-                groupValue: Preferences.gender, 
+                groupValue: Preferences.gender,     // Group and filter by the value
                 title: const Text('Masculino'),
                 onChanged: ( value ) {
                   Preferences.gender = value ?? 1;
@@ -66,7 +68,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               const Divider(),
               RadioListTile<int>(
                 value: 2, 
-                groupValue: Preferences.gender, 
+                groupValue: Preferences.gender,   // Group and filter by the value
                 title: const Text('Femenino'),
                 onChanged: ( value ) {
                   Preferences.gender = value ?? 2;
@@ -81,8 +83,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: TextFormField(
                   initialValue: Preferences.name,
                   onChanged: ( value ) {
-                    Preferences.name = value;
-                    setState(() {});
+                    Preferences.name = value;   // Setter is invoked
+                    setState(() {});    // Redraw the widget with this value
                   },
                   decoration: const InputDecoration(
                     labelText: 'Nombre',
